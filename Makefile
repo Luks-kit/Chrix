@@ -20,10 +20,11 @@ build/boot.o: boot.S
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJ) linker.ld
+	@mkdir -p build/kernel/
 	$(LD) $(LDFLAGS) -o $@ $(OBJ)
 
 clean:
-	rm -rf build
+	rm -rf build/*
 
 run: $(TARGET)
 	qemu-system-aarch64 -M virt -cpu cortex-a53 -nographic -kernel $(TARGET)
