@@ -1,3 +1,4 @@
+#include "mmu.h"
 #include "uart.h"
 #include "mem.h"
 #include "irq.h"
@@ -6,7 +7,9 @@
 void k_main(void) {
     uart_init();
     uart_puts("Kernel started! Welcome to CHRix ARM64!\n");
-
+    uart_puts("MMU setup...\n");
+    mmu_setup();
+    uart_puts("MMU enabled!\n");
     irq_init();
 
     while (1) {
